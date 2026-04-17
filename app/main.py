@@ -2,11 +2,11 @@ import os
 
 
 def copy_file(command: str) -> None:
-    part = command.split()
-    if len(part) != 3 or part[0] != "cp" or part[1] == part[2]:
+    if len(command.split()) != 3:
         return
-    src = part[1]
-    dst = part[2]
+    cmd, src, dst = command.split()
+    if cmd != "cp" or src == dst:
+        return
 
     if os.path.basename(src) != src or os.path.basename(dst) != dst:
         return
